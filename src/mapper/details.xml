@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 配置关于订单明细表的 MyBatis映射文件 -->
+<!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
+<mapper namespace="com.dao.DetailsDAO">
+	<resultMap type="com.entity.Details" id="detailsMap">
+		<id property="detailsid" column="detailsid" />
+		<result property="ordercode" column="ordercode" />
+		<result property="goodsid" column="goodsid" />
+		<result property="price" column="price" />
+		<result property="num" column="num" />
+		<result property="goodsname" column="goodsname" />
+		<!-- 通过外键关联查询  返回封装Goods对象 -->
+		<association property="goods" column="goodsid" select="com.dao.GoodsDAO.getGoodsById" javaType="com.entity.Goods" />
+	</resultMap>
+
+	<!-- 订单明细表 插入SQL语句  DetailsDAO通过ID(insertDetails)调用此配置 -->
+	<insert id="insertDetails" parameterType="details">  
+		insert into details(detailsid  , ordercode  , goodsid  , price  , num ) values(#{detailsid}  , #{ordercode}   , #{goodsid}   , #{price}   , #{num} )
+	</insert>
+
+	<!-- 订单明细表 更新SQL语句  DetailsDAO通过ID(updateDetails)调用此配置 -->
+	<update id="updateDetails" parameterType="details">
+		update details set  ordercode=#{ordercode}  , goodsid=#{goodsid}  , price=#{price}  , num=#{num}  where detailsid=#{detailsid}
+	</update>
+
+	<!-- 订单明细表 按主键删除SQL语句  DetailsDAO通过ID(deleteDetails)调用此配置 -->
+	<delete id="deleteDetails" parameterType="String">
+		delete from details where detailsid = #{detailsid}
+	</delete>
+
+	<!-- 订单明细表 查询全部订单明细信息SQL语句  DetailsDAO通过ID(getAllDetails)调用此配置  -->
+	<select id="getAllDetails" resultMap="detailsMap">
+		select a.* , b.goodsname  from details a , goods b  where 1=1 and a.goodsid = b.goodsid  order by detailsid desc
+	</select>
+
+	<!-- 订单明细表 按主键(detailsid)查询SQL语句 DetailsDAO通过ID(getDetailsById)调用此配置  -->
+	<select id="getDetailsById" parameterType="String" resultMap="detailsMap">
+		select a.* , b.goodsname  from details a , goods b  where 1=1 and a.goodsid = b.goodsid and detailsid=#{detailsid} 
+	</select>
+
+	<!-- 订单明细表 按条件精确查询SQL语句 DetailsDAO通过ID(getDetailsByCond)调用此配置  -->
+	<select id="getDetailsByCond" parameterType="details" resultMap="detailsMap">
+		select a.* , b.goodsname  from details a , goods b  where 1=1 and a.goodsid = b.goodsid 
+		<if test="ordercode != null and '' != ordercode">
+			and a.ordercode = #{ordercode}  
+		</if>
+		<if test="goodsid != null and '' != goodsid">
+			and a.goodsid = #{goodsid}  
+		</if>
+		<if test="price != null and '' != price">
+			and a.price = #{price}  
+		</if>
+		<if test="num != null and '' != num">
+			and a.num = #{num}  
+		</if>
+	</select>
+
+	<!-- 订单明细表 按条件模糊查询SQL语句 DetailsDAO通过ID(getDetailsByLike)调用此配置  -->
+	<select id="getDetailsByLike" parameterType="details" resultMap="detailsMap">
+		select a.* , b.goodsname  from details a , goods b  where 1=1 and a.goodsid = b.goodsid 
+		<if test="ordercode != null and '' != ordercode">
+			and a.ordercode like CONCAT('%', CONCAT(#{ordercode}, '%'))
+		</if>
+		<if test="goodsid != null and '' != goodsid">
+			and b.goodsname like CONCAT('%', CONCAT(#{goodsid}, '%'))
+		</if>
+		<if test="price != null and '' != price">
+			and a.price like CONCAT('%', CONCAT(#{price}, '%'))
+		</if>
+		<if test="num != null and '' != num">
+			and a.num like CONCAT('%', CONCAT(#{num}, '%'))
+		</if>
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis.xml作用：配置连接数据库的所有需要的环境 ， 必须连接到所有要使用的映射文件。 -->
+<configuration>
+	<!-- 配置别名：在MyBatis中为一个类取别名，配置别名是为了在对象映射文件中接收参数类型和返回参数类型时使用 -->
+	<typeAliases>
+		<typeAlias alias="admin" type="com.entity.Admin" /><!-- 管理员表别名为admin 映射类是 com.entity.Admin -->
+		<typeAlias alias="loginf" type="com.entity.Loginf" /><!-- 登录日志表别名为loginf 映射类是 com.entity.Loginf -->
+		<typeAlias alias="operlog" type="com.entity.Operlog" /><!-- 操作日志表别名为operlog 映射类是 com.entity.Operlog -->
+		<typeAlias alias="users" type="com.entity.Users" /><!-- 网站用户表别名为users 映射类是 com.entity.Users -->
+		<typeAlias alias="article" type="com.entity.Article" /><!-- 新闻公告表别名为article 映射类是 com.entity.Article -->
+		<typeAlias alias="cate" type="com.entity.Cate" /><!-- 商品类型表别名为cate 映射类是 com.entity.Cate -->
+		<typeAlias alias="goods" type="com.entity.Goods" /><!-- 商品表别名为goods 映射类是 com.entity.Goods -->
+		<typeAlias alias="cart" type="com.entity.Cart" /><!-- 购物车表别名为cart 映射类是 com.entity.Cart -->
+		<typeAlias alias="orders" type="com.entity.Orders" /><!-- 订单表别名为orders 映射类是 com.entity.Orders -->
+		<typeAlias alias="details" type="com.entity.Details" /><!-- 订单明细表别名为details 映射类是 com.entity.Details -->
+		<typeAlias alias="topic" type="com.entity.Topic" /><!-- 订单评价表别名为topic 映射类是 com.entity.Topic -->
+		<typeAlias alias="fav" type="com.entity.Fav" /><!-- 用户收藏表别名为fav 映射类是 com.entity.Fav -->
+		<typeAlias alias="complains" type="com.entity.Complains" /><!-- 意见反馈表别名为complains 映射类是 com.entity.Complains -->
+	</typeAliases>
+
+	<!-- mappers 标签是用来配置需要加载的 SQL 映射配置文件路径 -->
+	<mappers>
+		<mapper resource="mapper/admin.xml" /> <!-- 管理员映射文件 -->
+		<mapper resource="mapper/loginf.xml" /> <!-- 登录日志映射文件 -->
+		<mapper resource="mapper/operlog.xml" /> <!-- 操作日志映射文件 -->
+		<mapper resource="mapper/users.xml" /> <!-- 网站用户映射文件 -->
+		<mapper resource="mapper/article.xml" /> <!-- 新闻公告映射文件 -->
+		<mapper resource="mapper/cate.xml" /> <!-- 商品类型映射文件 -->
+		<mapper resource="mapper/goods.xml" /> <!-- 商品映射文件 -->
+		<mapper resource="mapper/cart.xml" /> <!-- 购物车映射文件 -->
+		<mapper resource="mapper/orders.xml" /> <!-- 订单映射文件 -->
+		<mapper resource="mapper/details.xml" /> <!-- 订单明细映射文件 -->
+		<mapper resource="mapper/topic.xml" /> <!-- 订单评价映射文件 -->
+		<mapper resource="mapper/fav.xml" /> <!-- 用户收藏映射文件 -->
+		<mapper resource="mapper/complains.xml" /> <!-- 意见反馈映射文件 -->
+	</mappers>
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
